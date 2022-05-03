@@ -6,6 +6,9 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import org.launchcode.techjobs.oo.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import static org.junit.Assert.*;
 
 /**
@@ -20,7 +23,7 @@ public class JobTest {
     Job test_job = new Job();
     Job test_job2 = new Job();
 
-    assertTrue(test_job.getId() != test_job2.getId() && test_job.getId()+1 == test_job2.getId() );
+    assertTrue(test_job.getId()+1 == test_job2.getId() );
     }
 
 
@@ -30,7 +33,7 @@ public class JobTest {
 
         assertTrue(Integer.class.isInstance(test_job3.getId()));
 
-        assertEquals(3, test_job3.getId());
+        assertTrue(test_job3.getId() >= 1);
 
         assertTrue(test_job3.getName() instanceof String);
 
@@ -60,7 +63,37 @@ public class JobTest {
 
         assertFalse(test_job4.getId() == test_job5.getId());
 
-        //assertEquals(1,test_job1.getId());
+        //assertEquals(2,test_job5.getId());
     }
+
+    @Test
+    public void testToStringStartsAndEndsWithNewLine() {
+        Job test_job6 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        String jobString = test_job6.toString();
+
+        assertTrue(jobString.startsWith("\n") && jobString.endsWith("\n"));
+
+    }
+
+    @Test
+    public void testToStringContainsCorrectLabelsAndData() {
+        Job test_job7 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        String[] labels = {"ID", "Name", "Employer", "Location", "Position Type", "Core Competency"};
+        String[] jobArray = test_job7.toString().split("\n");
+        for (int x = 0; x <= jobArray.length; x++) {
+            System.out.println(labels[x] + " :: " + jobArray[x]);
+
+        }
+
+        //assertTrue(test_job7.toString().contains());
+    }
+
+    @Test
+    public void testToStringHandlesEmptyField() {
+        Job test_job8 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+
+
+    }
+
 
 }
