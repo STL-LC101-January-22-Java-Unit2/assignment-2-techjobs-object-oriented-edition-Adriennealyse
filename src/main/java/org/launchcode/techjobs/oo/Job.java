@@ -54,10 +54,10 @@ public class Job {
     public String toString() {
 
 
-        id = ((id == null) ? "Data not available" : id);
-        name = (name == null ? "Data not available" : name);
-        employer = (employer == null ? "Data not available" : employer);
-        location = (location == null ? "Data not available" : location);
+        //id = (id ==null ? "Data not available" : id);
+        //name = (name == null ? "Data not available" : name);
+        //employer = (employer == null ? "Data not available" : employer);
+        //location = (location == null ? "Data not available" : location);
 
 
         return '\n' +
