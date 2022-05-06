@@ -73,16 +73,20 @@ public class JobTest {
     public void testToStringStartsAndEndsWithNewLine() {
         Job test_job6 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         String jobString = test_job6.toString();
-        int firstChar = 0;
+        /*int firstChar = 0;
                 if (jobString.startsWith("\n") == true) {
                     firstChar = (int)'\n';
                 }
         int lastChar = 0;
                 if (jobString.endsWith("\n") == true){
                     lastChar = (int)'\n';
-                }
-        assertEquals(firstChar,lastChar);
-        // assertEquals(lastChar,true);
+                }*/
+
+        assertEquals('\n', jobString.charAt(0));
+
+
+
+        assertEquals("\n",jobString.substring(jobString.length() - 1));
 
         // assertTrue(jobString.startsWith("\n") && jobString.endsWith("\n"));
         //assertEquals(isWhitespace(jobString.charAt(0)), jobString.charAt(0));
@@ -93,9 +97,7 @@ public class JobTest {
     @Test
     public void testToStringContainsCorrectLabelsAndData() {
         Job j7 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-        /*String testString = "ID:" + test_job7.getId() + "\n" +
-                            "Name:" + "Application" + "\n" +
-                            "Employee:" + "GM";*/
+
 
         String patternString = "\nID: " + j7.getId() +
                                "\nName: " + j7.getName() +
@@ -103,28 +105,21 @@ public class JobTest {
                                "\nLocation: " + j7.getLocation() +
                                "\nPosition Type: " + j7.getPositionType() +
                                "\nCore Competency: " + j7.getCoreCompetency() + "\n";
-        //System.out.println("J7 : " + j7.toString());
-        //System.out.println("PT : " + patternString);
+
         Pattern pattern = Pattern.compile(patternString);
         Matcher matcher = pattern.matcher(j7.toString());
         boolean matches = matcher.matches();
         //System.out.println("Matcher Result : "+ matches);
         assertEquals(patternString,j7.toString());
 
-        //String[] labels = {"ID", "Name", "Employer", "Location", "Position Type", "Core Competency"};
-        //String[] jobArray = test_job7.toString().split("\n");
-        //for (int x = 0; x <= jobArray.length; x++) {
-           // System.out.println(labels[x] + " :: " + jobArray[x]);
 
-        //}
-        //assertTrue(test_job7.toString().contains("ID" + test_job7.getId()  ));
-        //assertTrue(test_job7.toString().contains());
     }
 
     @Test
     public void testToStringHandlesEmptyField() {
-        Job test_job8 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        Job test_job8 = new Job("Product tester", new Employer("ACME"), new Location(""), new PositionType("Quality control"), new CoreCompetency("Persistence"));
 
+        //assertEquals(,test_job8.toString())
 
     }
 
