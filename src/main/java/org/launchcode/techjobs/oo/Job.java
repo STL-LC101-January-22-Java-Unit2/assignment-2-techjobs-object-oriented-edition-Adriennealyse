@@ -52,13 +52,32 @@ public class Job {
 
     @Override
     public String toString() {
+        //String notAvailable = "Data not available";
+        //System.out.println(employer);
+        if ( id == 0 ) {
+           id = 0 ;
+        }
 
 
-        //id = (id ==null ? "Data not available" : id);
-        //name = (name == null ? "Data not available" : name);
-        //employer = (employer == null ? "Data not available" : employer);
-        //location = (location == null ? "Data not available" : location);
+        name = (name.equals("") || name == null ? "Data not available" : name);
 
+        if (employer.getValue() == null || employer.getValue().equals("")) {
+            //System.out.println("employer");
+            employer.setValue("Data not available"); ;
+            //System.out.println(employer);
+        }
+
+        if (location.getValue() == null || location.getValue().equals("") ) {
+        location.setValue("Data not available") ;
+        }
+
+        if (positionType.getValue() == null || positionType.getValue().equals("")) {
+            positionType.setValue("Data not available");
+        }
+
+        if (coreCompetency == null || coreCompetency.getValue().equals("")) {
+            coreCompetency.setValue("Data not available");
+        }
 
         return '\n' +
                 "ID: " + id +

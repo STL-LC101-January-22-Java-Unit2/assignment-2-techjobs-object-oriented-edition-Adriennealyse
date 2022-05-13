@@ -73,22 +73,23 @@ public class JobTest {
     public void testToStringStartsAndEndsWithNewLine() {
         Job test_job6 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         String jobString = test_job6.toString();
-        /*int firstChar = 0;
+        int firstChar = 0;
                 if (jobString.startsWith("\n") == true) {
                     firstChar = (int)'\n';
                 }
         int lastChar = 0;
                 if (jobString.endsWith("\n") == true){
                     lastChar = (int)'\n';
-                }*/
+                }
 
-        assertEquals('\n', jobString.charAt(0));
+        //assertEquals('\n', jobString.charAt(0));
+        assertEquals('\n', firstChar);
 
 
 
-        assertEquals("\n",jobString.substring(jobString.length() - 1));
+        //assertEquals('\n',jobString.substring(jobString.length() - 1));
 
-        // assertTrue(jobString.startsWith("\n") && jobString.endsWith("\n"));
+        assertEquals('\n', lastChar);
         //assertEquals(isWhitespace(jobString.charAt(0)), jobString.charAt(0));
         //assertEquals(jobString.startsWith("\n"), jobString.charAt(0));
 
@@ -117,10 +118,21 @@ public class JobTest {
 
     @Test
     public void testToStringHandlesEmptyField() {
-        Job test_job8 = new Job("Product tester", new Employer("ACME"), new Location(""), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-
-        //assertEquals(,test_job8.toString())
-
+        Job test_job8 = new Job("Product tester", new Employer(""), new Location(""), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        System.out.println(test_job8.toString());
+        //System.out.println( (new Job("Product tester", new Employer("ACME"), new Location(""), new PositionType("Quality control"), new CoreCompetency("Persistence")).toString() ));
+        assertEquals("\nID: 1\n" +
+                "Name: Product tester\n" +
+                "Employer: Data not available\n" +
+                "Location: Data not available\n" +
+                "Position Type: Quality control\n" +
+                "Core Competency: Persistence\n",test_job8.toString());
+        assertEquals("Data not available",test_job8.getEmployer().getValue());
+        assertEquals("Product tester", test_job8.getName());
+        assertEquals(1, test_job8.getId());
+        assertEquals("Data not available", test_job8.getLocation().getValue());
+        assertEquals("Quality control", test_job8.getPositionType().getValue());
+        assertEquals("Persistence", test_job8.getCoreCompetency().getValue());
     }
 
 
